@@ -19,5 +19,4 @@ data class Player(
     val numRankingTitles: Int,
     @SerializedName("NumMaximums")
     val numMaximums: Int,
-    val fullName: String = "$firstName $lastName",
 )

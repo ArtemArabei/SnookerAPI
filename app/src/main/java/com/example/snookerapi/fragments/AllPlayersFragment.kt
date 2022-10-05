@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.snookerapi.*
 import com.example.snookerapi.adapters.PlayerAdapter
 import com.example.snookerapi.databinding.FragmentAllPlayersBinding
+import com.example.snookerapi.extensions.addHorizontalSpace
 import com.example.snookerapi.model.PagingData
 import com.example.snookerapi.model.Player
 import com.example.snookerapi.retrofit.SnookerService
@@ -67,7 +68,7 @@ class AllPlayersFragment : Fragment() {
 
             recyclerView.adapter = adapter
             recyclerView.layoutManager = linearLayoutManager
-            recyclerView.addHorizontalSpace(16)
+            recyclerView.addHorizontalSpace(requireContext().resources.getDimensionPixelSize(R.dimen.space_res))
 
             executeRequest()
 
@@ -83,14 +84,14 @@ class AllPlayersFragment : Fragment() {
                     }
 
                     override fun onQueryTextChange(query: String): Boolean {
-                        adapter.submitList(currentPlayers
+                        val sortedPlayers = currentPlayers
                             .filter {
                                 it.firstName.contains(query) || it.lastName.contains(query)
                             }
+                        adapter.submitList(sortedPlayers
                             .map { PagingData.Item(it) })
                         return true
                     }
-
                 })
         }
     }

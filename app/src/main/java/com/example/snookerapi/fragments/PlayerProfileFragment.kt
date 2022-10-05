@@ -1,18 +1,17 @@
 package com.example.snookerapi.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
-import androidx.navigation.fragment.findNavController
 import coil.load
-import com.example.snookerapi.model.PlayerProfile
 import com.example.snookerapi.R
 import com.example.snookerapi.databinding.FragmentPlayerProfileBinding
+import com.example.snookerapi.model.PlayerProfile
 import com.example.snookerapi.retrofit.SnookerService
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -54,7 +53,6 @@ class PlayerProfileFragment : Fragment() {
     private fun loadPlayerProfile() {
         SnookerService.snookerApi.getPlayerProfile(args.id)
             .enqueue(object : Callback<List<PlayerProfile>> {
-                @SuppressLint("SetTextI18n")
                 override fun onResponse(
                     call: Call<List<PlayerProfile>>,
                     response: Response<List<PlayerProfile>>,
@@ -68,13 +66,19 @@ class PlayerProfileFragment : Fragment() {
                             } else {
                                 playerPhoto.load(R.drawable.no_photo)
                             }
-                            firstName.text = "First name - ${playerProfile.firstName}"
-                            lastName.text = "Last name - ${playerProfile.lastName}"
-                            nationality.text = "Nationality - ${playerProfile.nationality}"
-                            dateOfBorn.text = "Date of born - ${playerProfile.dateOfBorn}"
+                            firstName.text = requireContext().getString(R.string.first_name,
+                                playerProfile.firstName)
+                            lastName.text = requireContext().getString(R.string.last_name,
+                                playerProfile.lastName)
+                            nationality.text = requireContext().getString(R.string.nationality,
+                                playerProfile.nationality)
+                            dateOfBorn.text = requireContext().getString(R.string.date_of_born,
+                                playerProfile.dateOfBorn)
                             numRankingTitles.text =
-                                "Ranking titles -  ${playerProfile.numRankingTitles}"
-                            numMaximums.text = "Maximums done - ${playerProfile.numMaximums}"
+                                requireContext().getString(R.string.ranking_titles,
+                                    playerProfile.numRankingTitles)
+                            numMaximums.text = requireContext().getString(R.string.maximums_done,
+                                playerProfile.numMaximums)
                         }
                     } else {
                         handleErrors(response.errorBody()?.string() ?: "")

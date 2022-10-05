@@ -76,7 +76,6 @@ class PlayerAdapter(
                 val newPlayer = newItem as? PagingData.Item
                 return oldPlayer?.data == newPlayer?.data
             }
-
         }
     }
 }
