@@ -1,23 +1,28 @@
 package com.example.snookerapi.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
-import androidx.navigation.fragment.findNavController
 import coil.load
-import com.example.snookerapi.model.PlayerProfile
 import com.example.snookerapi.R
 import com.example.snookerapi.databinding.FragmentPlayerProfileBinding
-import com.example.snookerapi.retrofit.SnookerService
-import com.google.android.material.snackbar.Snackbar
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.snookerapi.model.Lce
+import com.example.snookerapi.servicelocator.ServiceLocator
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class PlayerProfileFragment : Fragment() {
 
@@ -25,6 +30,16 @@ class PlayerProfileFragment : Fragment() {
     private val binding get() = requireNotNull(_binding)
 
     private val args by navArgs<PlayerProfileFragmentArgs>()
+
+    private val viewModel: PlayerProfileViewModel by viewModels(
+        factoryProducer = {
+            viewModelFactory {
+                initializer {
+                    PlayerProfileViewModel(snookerApi = ServiceLocator.provideApiDataSource(), args)
+                }
+            }
+        }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,11 +54,50 @@ class PlayerProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadPlayerProfile()
+        viewModel
+            .snookerPlayerFlow
+            .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+            .onEach { lce ->
+                when (lce) {
+                    Lce.Loading -> {
+                        binding.loadingProgress.isVisible = true
+                    }
+                    is Lce.Content -> {
+                        val data = lce.data[0]
+                        with(binding) {
+                            loadingProgress.isVisible = false
+                            scrollView.isVisible = true
+                            if (data.photoUrl != "") {
+                                playerPhoto.load(data.photoUrl)
+                            } else {
+                                playerPhoto.load(R.drawable.no_photo)
+                            }
+                            firstName.text = requireContext().getString(R.string.first_name,
+                                data.firstName)
+                            lastName.text = requireContext().getString(R.string.last_name,
+                                data.lastName)
+                            nationality.text = requireContext().getString(R.string.nationality,
+                                data.nationality)
+                            dateOfBorn.text = requireContext().getString(R.string.date_of_born,
+                                data.dateOfBorn)
+                            numRankingTitles.text =
+                                requireContext().getString(R.string.ranking_titles,
+                                    data.numRankingTitles)
+                            numMaximums.text = requireContext().getString(R.string.maximums_done,
+                                data.numMaximums)
+                        }
+                    }
+                    is Lce.Error -> {
+                        Toast.makeText(requireContext(),
+                            lce.throwable.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
 
-        with(binding) {
-            toolbar.setupWithNavController(findNavController())
-        }
+        binding.toolbar.setupWithNavController(findNavController())
     }
 
     override fun onDestroyView() {
@@ -51,47 +105,6 @@ class PlayerProfileFragment : Fragment() {
         _binding = null
     }
 
-    private fun loadPlayerProfile() {
-        SnookerService.snookerApi.getPlayerProfile(args.id)
-            .enqueue(object : Callback<List<PlayerProfile>> {
-                @SuppressLint("SetTextI18n")
-                override fun onResponse(
-                    call: Call<List<PlayerProfile>>,
-                    response: Response<List<PlayerProfile>>,
-                ) {
-                    if (response.isSuccessful) {
-                        val playerProfileList = response.body() ?: return
-                        val playerProfile = playerProfileList[0]
-                        with(binding) {
-                            if (playerProfile.photoUrl != "") {
-                                playerPhoto.load(playerProfile.photoUrl)
-                            } else {
-                                playerPhoto.load(R.drawable.no_photo)
-                            }
-                            firstName.text = "First name - ${playerProfile.firstName}"
-                            lastName.text = "Last name - ${playerProfile.lastName}"
-                            nationality.text = "Nationality - ${playerProfile.nationality}"
-                            dateOfBorn.text = "Date of born - ${playerProfile.dateOfBorn}"
-                            numRankingTitles.text =
-                                "Ranking titles -  ${playerProfile.numRankingTitles}"
-                            numMaximums.text = "Maximums done - ${playerProfile.numMaximums}"
-                        }
-                    } else {
-                        handleErrors(response.errorBody()?.string() ?: "")
-                    }
-                }
-
-                override fun onFailure(call: Call<List<PlayerProfile>>, t: Throwable) {
-                    handleErrors(t.message ?: "")
-                }
-            })
-    }
-
-    private fun handleErrors(errorMessage: String) {
-        Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_SHORT)
-            .setAction(android.R.string.ok) {}
-            .show()
-    }
 }
 
 

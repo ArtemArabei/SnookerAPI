@@ -2,20 +2,18 @@ package com.example.snookerapi.retrofit
 
 import com.example.snookerapi.model.Player
 import com.example.snookerapi.model.PlayerProfile
-import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface SnookerApi {
 
-   /* @Headers("X-Requested-By: ArtemMinsk")*/
     @GET("?t=10&st=p")
-    //@GET("?t=10&st=p&s=2021")
-    fun getPlayers(
-       @Query("s") s: Int
-    ): Call<List<Player>>
+    suspend fun getPlayers(
+        @Query("s") s: Int,
+    ): List<Player>
 
     @GET(".")
-    fun getPlayerProfile(
-        @Query("p") id: Int
-    ): Call<List<PlayerProfile>>
+    suspend fun getPlayerProfile(
+        @Query("p") id: Int,
+    ): List<PlayerProfile>
 }

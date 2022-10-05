@@ -1,23 +1,22 @@
 package com.example.snookerapi.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Player(
+    @PrimaryKey
     @SerializedName("ID")
     val id: Int,
+    @ColumnInfo(name = "first_name")
     @SerializedName("FirstName")
     val firstName: String,
+    @ColumnInfo(name = "last_name")
     @SerializedName("LastName")
     val lastName: String,
-    @SerializedName("Nationality")
-    val nationality: String,
-    @SerializedName("Born")
-    val dateOfBorn: String,
+    @ColumnInfo(name = "photo_url")
     @SerializedName("Photo")
     val photoUrl: String,
-    @SerializedName("NumRankingTitles")
-    val numRankingTitles: Int,
-    @SerializedName("NumMaximums")
-    val numMaximums: Int,
-    val fullName: String = "$firstName $lastName",
 )

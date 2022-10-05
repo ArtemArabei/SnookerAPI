@@ -21,7 +21,7 @@ class PlayerViewHolder(
                 playerPhoto.load(R.drawable.no_photo)
             }
 
-            playerFullName.text = item.firstName + " " + item.lastName
+            playerFullName.text = "${item.firstName} ${item.lastName}"
 
             root.setOnClickListener {
                 onPlayerClicked(item)
