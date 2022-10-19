@@ -16,6 +16,23 @@
         <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPI/app/src/main/res/layout/item_player.xml" value="0.15" />
         <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPI/app/src/main/res/menu/menu_toolbar.xml" value="0.1" />
         <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPI/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1405" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/drawable/ic_baseline_album_24.xml" value="0.157" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1455" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/drawable/ic_baseline_group_work_24.xml" value="0.1455" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1455" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1455" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/drawable/no_photo.xml" value="0.1455" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/activity_main.xml" value="0.209375" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/fragment_all_events.xml" value="0.209375" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/fragment_all_players.xml" value="0.17699115044247787" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/fragment_choose_year.xml" value="0.209375" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/fragment_event_profile.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/fragment_player_profile.xml" value="0.209375" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/fragment_years_to_show.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/item_event.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/layout/item_player.xml" value="0.209375" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.209375" />
+        <entry key="..\:/Users/Artem/AndroidStudioProjects/SnookerAPIstart with new screens/app/src/main/res/menu/menu_toolbar.xml" value="0.209375" />
       </map>
     </option>
   </component>
