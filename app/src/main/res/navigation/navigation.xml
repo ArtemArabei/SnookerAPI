@@ -3,12 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/fragment_all_players">
+    app:startDestination="@id/fragment_choose_year">
+
+    <fragment
+        android:id="@+id/fragment_choose_year"
+        android:name="com.example.snookerapi.presentation.ui.chooseYear.ChooseYearFragment"
+        tools:layout="@layout/fragment_choose_year">
+
+        <action
+            android:id="@+id/to_all_players"
+            app:destination="@+id/fragment_all_players" />
+
+        <action
+            android:id="@+id/to_all_events"
+            app:destination="@+id/fragment_all_events" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_all_players"
-        android:name="com.example.snookerapi.fragments.AllPlayersFragment"
+        android:name="com.example.snookerapi.presentation.ui.allPlayers.AllPlayersFragment"
         tools:layout="@layout/fragment_all_players">
+
+        <argument
+            android:name="year"
+            app:argType="integer" />
 
         <action
             android:id="@+id/to_player_profile"
@@ -16,15 +35,44 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/fragment_all_events"
+        android:name="com.example.snookerapi.presentation.ui.allEvents.AllEventsFragment"
+        tools:layout="@layout/fragment_all_events">
+
+        <argument
+            android:name="year"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/to_event_profile"
+            app:destination="@+id/fragment_event_profile" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_player_profile"
-        android:name="com.example.snookerapi.fragments.PlayerProfileFragment"
+        android:name="com.example.snookerapi.presentation.ui.playerProfile.PlayerProfileFragment"
         tools:layout="@layout/fragment_player_profile">
 
         <argument
             android:name="id"
             app:argType="integer" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_event_profile"
+        android:name="com.example.snookerapi.presentation.ui.eventProfile.EventProfileFragment"
+        tools:layout="@layout/fragment_event_profile">
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/to_player_profile"
+            app:destination="@+id/fragment_player_profile" />
 
     </fragment>
 

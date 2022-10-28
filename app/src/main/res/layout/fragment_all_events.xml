@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:menu="@menu/menu_toolbar"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:title="@string/all_players_toolbar_title" />
+        app:title="@string/all_events_toolbar_title" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="5"
-                tools:listitem="@layout/item_player" />
+                tools:listitem="@layout/item_event" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
