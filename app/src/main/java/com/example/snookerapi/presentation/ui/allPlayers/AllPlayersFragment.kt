@@ -21,7 +21,7 @@ import com.example.snookerapi.presentation.extensions.addHorizontalSpace
 import com.example.snookerapi.presentation.model.Lce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class AllPlayersFragment : Fragment() {
@@ -31,7 +31,7 @@ class AllPlayersFragment : Fragment() {
 
     private val args: AllPlayersFragmentArgs by navArgs()
 
-    private val viewModel by inject<AllPlayersViewModel> { parametersOf(args.year) }
+    private val viewModel by viewModel<AllPlayersViewModel> { parametersOf(args.year) }
 
     private val adapter by lazy {
         PlayerAdapter(

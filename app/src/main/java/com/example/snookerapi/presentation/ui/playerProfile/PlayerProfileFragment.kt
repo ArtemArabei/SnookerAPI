@@ -19,7 +19,7 @@ import com.example.snookerapi.databinding.FragmentPlayerProfileBinding
 import com.example.snookerapi.presentation.model.Lce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class PlayerProfileFragment : Fragment() {
@@ -29,7 +29,7 @@ class PlayerProfileFragment : Fragment() {
 
     private val args by navArgs<PlayerProfileFragmentArgs>()
 
-    private val viewModel by inject<PlayerProfileViewModel> { parametersOf(args.id) }
+    private val viewModel by viewModel<PlayerProfileViewModel> { parametersOf(args.id) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,6 +78,7 @@ class PlayerProfileFragment : Fragment() {
                         }
                     }
                     is Lce.Error -> {
+                        binding.loadingProgress.isVisible = false
                         Toast.makeText(requireContext(),
                             lce.throwable.message,
                             Toast.LENGTH_SHORT

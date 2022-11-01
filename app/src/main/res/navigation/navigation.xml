@@ -18,6 +18,10 @@
             android:id="@+id/to_all_events"
             app:destination="@+id/fragment_all_events" />
 
+        <action
+            android:id="@+id/to_all_countries"
+            app:destination="@+id/fragment_all_countries" />
+
     </fragment>
 
     <fragment
@@ -73,6 +77,13 @@
         <action
             android:id="@+id/to_player_profile"
             app:destination="@+id/fragment_player_profile" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_all_countries"
+        android:name="com.example.snookerapi.presentation.ui.allCountries.AllCountriesFragment"
+        tools:layout="@layout/fragment_all_countries">
 
     </fragment>
 

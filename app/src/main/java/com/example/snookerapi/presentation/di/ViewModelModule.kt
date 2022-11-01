@@ -1,5 +1,6 @@
 package com.example.snookerapi.presentation.di
 
+import com.example.snookerapi.presentation.ui.allCountries.AllCountriesViewModel
 import com.example.snookerapi.presentation.ui.allEvents.AllEventsViewModel
 import com.example.snookerapi.presentation.ui.allPlayers.AllPlayersViewModel
 import com.example.snookerapi.presentation.ui.chooseYear.ChooseYearViewModel
@@ -14,4 +15,5 @@ val viewModelModule = module {
     viewModelOf(::ChooseYearViewModel)
     viewModelOf(::AllEventsViewModel)
     viewModelOf(::EventProfileViewModel)
+    viewModelOf(::AllCountriesViewModel)
 }
