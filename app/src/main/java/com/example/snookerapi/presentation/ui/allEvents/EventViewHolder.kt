@@ -13,7 +13,7 @@ class EventViewHolder(
     @SuppressLint("SetTextI18n")
     fun bind(item: Event) {
         with(binding) {
-            eventInfo.text = "${item.name}: ${item.dateOfStart} - ${item.dateOfEnd}"
+            eventInfo.text = "${item.name}:\n${item.dateOfStart} - ${item.dateOfEnd}"
 
             root.setOnClickListener {
                 onEventClicked(item)

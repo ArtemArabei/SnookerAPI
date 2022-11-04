@@ -4,6 +4,7 @@
     <string name="all_players_toolbar_title">Main Tour Snooker Players</string>
     <string name="player_profile_toolbar_title">Player\'s Profile</string>
     <string name="all_events_toolbar_title">Main Tour Snooker Events</string>
+    <string name="all_countries_toolbar_title">Google Map</string>
     <string name="event_profile_toolbar_title">Event\'s Profile</string>
     <string name="first_name">First name - %s</string>
     <string name="last_name">Last name - %s</string>
@@ -18,11 +19,17 @@
     <string name="date_of_start">Date of start - %s</string>
     <string name="date_of_end">Date of end - %s</string>
     <string name="defending_champion">Defending Champion</string>
+    <string name="country_name">Country - %s</string>
+    <string name="capital_name">Capital - %s</string>
+    <string name="country_area">Area - %s sq. km</string>
+    <string name="country_population">Population - %s people</string>
     <string name="choose_year_text_view_text">Enter a year between 2005 and 2022</string>
     <string name="choose_year_text_input_text">Year to show</string>
     <string name="button_show_players_text">Show players</string>
     <string name="button_show_events_text">Show events</string>
+    <string name="button_show_map_text">Show map</string>
     <string name="toolbar_search_icon_text">Search</string>
     <string name="wrong_year_chosen">Error! Enter a year between 2005 and 2022!</string>
     <string name="no_defending_champion">This event still does not have defending champion</string>
+    <string name="field_is_empty">Error! Field is empty!</string>
 </resources>

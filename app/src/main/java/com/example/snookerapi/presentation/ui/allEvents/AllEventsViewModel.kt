@@ -37,9 +37,6 @@ class AllEventsViewModel(
                 },
                 onFailure = { Lce.Error(it) }
             )
-        }.onStart {
-            val state = Lce.Loading
-            emit(state)
         }.stateIn(
             viewModelScope,
             SharingStarted.Eagerly,

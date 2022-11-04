@@ -17,4 +17,9 @@ class ChooseYearViewModel() : ViewModel() {
         )
     }
 
+    fun onButtonShowMapClicked(controller: NavController) {
+        controller.navigate(
+            ChooseYearFragmentDirections.toAllCountries()
+        )
+    }
 }
